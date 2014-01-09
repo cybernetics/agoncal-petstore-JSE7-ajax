@@ -1,12 +1,19 @@
-# Application - Petstore Java EE 6
+# Application - Petstore Java SE 7 utilising BabbageFaces 
 
-* *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org)
+* *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org),
+             [Stephan Rauh](http://www.beyondjave.net)
 * *Level* : Intermediate
 * *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0, JAX-RS 1.1)
 * *Application Servers* : GlassFish 3.x, JBoss 7.x, TomEE 1.x
-* *Summary* : A Petstore-like application using Java EE 6
+* *Summary* : A Petstore-like application using AngularFaces, BabbageFaces and JSE 7
 
-[Download the code from GitHub](https://github.com/agoncal/agoncal-application-petstore-ee6)
+## Purpose of this fork
+This fork tries to take Antonio Goncalves JEE 6 pet store demo to another level. First it provides an AJAX port making BabbageFaces shine. 
+Second it gets rid of the JEE dependency. I want to show how simple it is to get Tomcat or Jetty to run the demo.
+
+[Download the AJAX+BabbageFaces code from GitHub](https://github.com/stephanrauh/agoncal-petstore-JSE7-ajax)
+
+[Download the original code from GitHub](https://github.com/agoncal/agoncal-application-petstore-ee6)
 
 ## Purpose of this application
 
