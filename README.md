@@ -3,21 +3,31 @@
 * *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org),
              [Stephan Rauh](http://www.beyondjave.net)
 * *Level* : Intermediate
-* *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0, JAX-RS 1.1)
+* *Technologies* : BabbageFaces, PrimeFaces 5+, Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0, JAX-RS 1.1)
 * *Application Servers* : GlassFish 3.x, JBoss 7.x, TomEE 1.x
-* *Summary* : A Petstore-like application using AngularFaces, BabbageFaces and JSE 7
+* *Summary* : A Petstore-like application using BabbageFaces and JSE 7
 
 ## Purpose of this fork
 This fork tries to take Antonio Goncalves JEE 6 pet store demo to another level. First it provides an AJAX port making BabbageFaces shine. 
-Second it gets rid of the JEE dependency. I want to show how simple it is to get Tomcat or Jetty to run the demo.
+Second it gets rid of the JavaEE dependency. I want to show how simple it is to get Tomcat or Jetty to run the demo.
 
 [Download the AJAX+BabbageFaces code from GitHub](https://github.com/stephanrauh/agoncal-petstore-JSE7-ajax)
 
 [Download the original code from GitHub](https://github.com/agoncal/agoncal-application-petstore-ee6)
 
+## State of the art
+Currently, the majority of the application has been ported to AJAX. Only a few HTML request remain. By default the application uses BabbageFaces.
+In general BabbageFaces works fine with the current version of the pet store. Only a few (but annoying) bugs remain.
+
+The second goal - getting rid of JavaEE - hasn't been tackled yet. I've developed the application against GlassFish and nothing else.
+
+Originally I also intended to use AngularFaces. As it turns out, AngularFaces are intrinsically incompatible: BabbageFaces optimizes the AJAX response,
+removing the Javascript code needed to support AngularFaces. I hope to fix this in a future version. As for now, suffice it to say AngularFaces and BabbageFaces
+have difference target audiences. 
+
 ## Purpose of this application
 
-Do you remember the good old Java [Petstore](http://java.sun.com/developer/releases/petstore/) ? It was a sample application created by Sun for its [Java BluePrints](http://www.oracle.com/technetwork/java/javaee/blueprints/index.html) program. The Java Petstore was designed to illustrate how J2EE (and then Java EE) could be used to develop an eCommerce web application. Yes, the point of the Petstore is to sell pets online.
+Do you remember the good old Java [Petstore](http://java.sun.com/developer/releases/petstore/)? It was a sample application created by Sun for its [Java BluePrints](http://www.oracle.com/technetwork/java/javaee/blueprints/index.html) program. The Java Petstore was designed to illustrate how J2EE (and then Java EE) could be used to develop an eCommerce web application. Yes, the point of the Petstore is to sell pets online.
 
 The Petstore had a huge momentum and we started to see plenty of Petstore-like applications flourish. The idea was to build an application with a certain technology. Let's face it, the J2EE version was far too complex using plenty of (today outdated) [design patterns](http://java.sun.com/blueprints/corej2eepatterns/). When I wrote my [Java EE 5 book](http://www.eyrolles.com/Informatique/Livre/java-ee5-9782212120387) back in 2006, I decided to write a Petstore-like application but much simpler. But again, it's out-dated today.
 
