@@ -3,7 +3,7 @@
 * *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org),
              [Stephan Rauh](http://www.beyondjave.net)
 * *Level* : Intermediate
-* *Technologies* : BabbageFaces, PrimeFaces 5+, Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0, JAX-RS 1.1)
+* *Technologies* : BabbageFaces, PrimeFaces 5+, Bootstrap, Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0, JAX-RS 1.1)
 * *Application Servers* : GlassFish 3.x, JBoss 7.x, TomEE 1.x
 * *Summary* : A Petstore-like application using BabbageFaces and JSE 7
 
