@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{localeBean.language}" xmlns="http://www.w3.org/1999/xhtml">
+<f:view locale="#{localeBean.locale}" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:prime="http://primefaces.org/ui"
+  contentType="text/html" encoding="UTF-8"
+>
+
+  <h:head>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/icon_dog.gif" />
+    <title><ui:insert name="title">Default title</ui:insert></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputStylesheet library="webjars/bootstrap/2.3.2/css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="webjars/bootstrap/2.3.2/css" name="bootstrap-responsive.css" rel="stylesheet" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+  </h:head>
+
+
+
+  <h:body id="bodyID">
+<!--    <h:body id="bodyID"> -->
+    
+    <!-- TOP NAVIGATION BAR -->
+    <h:form>
+      <h:panelGroup id="PanelID" layout="block" class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-inner">
+          <div class="container">
+
+            <!-- Brand -->
+            <h:link class="brand" outcome="main">AngularFaces Petstore
+                <f:param name="cid" value="#{javax.enterprise.context.conversation.id}" />
+            </h:link>
+
+              <prime:selectOneMenu value="#{localeBean.language}">
+                <f:selectItem itemLabel="Français" itemValue="fr" styleClass="menu-fr" />
+                <f:selectItem itemLabel="English" itemValue="en" styleClass="menu-en" />
+                <f:selectItem itemLabel="Español" itemValue="es" styleClass="menu-es" />
+                <prime:ajax event="change" update="@all" listener="#{localeBean.languageSelectionChanged}"
+                  process="@this"
+                />
+              </prime:selectOneMenu>
+            <div class="nav-collapse collapse nav pull-right">
+              <ul class="nav">
+                <li><prime:commandLink action="showaccount.xhtml"
+                    value="#{i18n.welcome} #{accountController.loggedinCustomer.firstname}"
+                    rendered="#{accountController.loggedIn}" update="@all"
+                  /></li>
+
+                <li><prime:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}">
+                    <h:outputText value="${i18n.logOut}" />
+                  </prime:commandLink></li>
+                <li><prime:commandLink action="asignon" value="#{i18n.logIn}" rendered="#{!accountController.loggedIn}">
+                  </prime:commandLink></li>
+                <li><prime:commandLink action="showcart.xhtml" value="#{i18n.shoppingCart}"
+                    rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
+                  </prime:commandLink></li>
+              </ul>
+
+              <div class="navbar-search">
+                <h:inputText class="search-query" value="#{catalogController.keyword}" />
+                <prime:commandButton action="#{catalogController.doSearch(catalogController.keyword)}" value="#{i18n.search}" styleClass="btn" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </h:panelGroup>
+
+
+
+      <!-- CONTENT -->
+      <h:panelGroup id="contentDIV" layout="block" class="container-fluid">
+
+        <!-- Error messages-->
+        <div class="page-header">
+          <prime:messages globalOnly="true" errorClass="alert alert-error" warnClass="alert"
+            infoClass="alert alert-info" showDetail="true" autoUpdate="true" closable="true"
+          />
+        </div>
+
+        <div class="row-fluid">
+          <!-- Navbar -->
+          <div class="span3 well sidebar-nav">
+            <ul class="nav nav-list">
+              <li><prime:commandLink value="Fish" update="@all"
+                  actionListener="#{navigationController.showProductCategory('Fish')}" action="showproducts.xhtml"
+                /></li>
+              <li><prime:commandLink value="Dogs" update="@all"
+                  actionListener="#{navigationController.showProductCategory('Dogs')}" action="showproducts.xhtml"
+                /></li>
+              <li><prime:commandLink value="Reptiles" update="@all"
+                  actionListener="#{navigationController.showProductCategory('Reptiles')}" action="showproducts.xhtml"
+                /></li>
+              <li><prime:commandLink value="Cats" update="@all"
+                  actionListener="#{navigationController.showProductCategory('Cats')}" action="showproducts.xhtml"
+                /></li>
+              <li><prime:commandLink value="Birds" update="@all"
+                  actionListener="#{navigationController.showProductCategory('Birds')}" action="showproducts.xhtml"
+                /></li>
+            </ul>
+          </div>
+          <!--/. Navbar -->
+
+
+          <!-- CONTENT -->
+          <h:panelGroup layout="block" id="contentGroup" class="span9 well">
+            <ui:insert name="body">Default content</ui:insert>
+          </h:panelGroup>
+          <!--/.CONTENT -->
+
+        </div>
+      </h:panelGroup>
+    </h:form>
+    <h:panelGroup id="FooterGridID" layout="block" class="container-fluid">
+
+      <!-- FOOTER -->
+      <div class="row-fluid well">
+        <div class="span3 text-center">
+          <a href="https://github.com/stephanrauh/agoncal-petstore-JSE7-ajax">Source code on GitHub</a>
+        </div>
+        <div class="span6 text-center">
+          <a class="muted credit" href="http://www.beyondjava.net">Stephan Rauh</a>
+        </div>
+        <div class="span3 text-center">
+          <h:outputText value="Debug: Conversation [#{shoppingCartController.conversation.id}]" />
+        </div>
+      </div>
+      <!--/.FOOTER -->
+
+    </h:panelGroup>
+  </h:body>
+</f:view>
+</html>

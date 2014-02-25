@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="layouts/atemplate.xhtml"
+                xmlns:prime="http://primefaces.org/ui"
+                >
+
+    <ui:define name="title">#{i18n.showProducts_productForCategory} : #{catalogController.categoryName}</ui:define>
+
+    <ui:define name="body">
+
+        <h2>#{i18n.showProducts_productForCategory} : #{catalogController.categoryName}</h2>
+
+        <h:outputText value="#{i18n.product_noProductFound}"
+                      rendered="#{catalogController.products == null || (catalogController.products.size() == 0)}"/>
+
+        <h:dataTable value="#{catalogController.products}" var="oneProduct"
+                     rendered="#{(catalogController.products.size() > 0)}" styleClass="table">
+            <h:column>
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="media-heading">
+                            <prime:commandLink value="#{oneProduct.name}" update="@all"
+                                actionListener="#{navigationController.showItems(catalogController.categoryName, oneProduct.id)}" 
+                                action="showitems.xhtml"/>
+                        </h3>
+                        <h:outputText value="#{oneProduct.description}"/>
+                    </div>
+                </div>
+            </h:column>
+        </h:dataTable>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:prime="http://primefaces.org/ui"
+                template="layouts/atemplate.xhtml">
+
+    <ui:define name="title">#{catalogController.item.product.name} - #{catalogController.item.name}</ui:define>
+
+    <ui:define name="body">
+
+        <h:outputText value="#{i18n.noItemsFound}" rendered="#{catalogController.item == null}"/>
+
+        <h:form rendered="#{catalogController.item != null}">
+            <div class="media">
+                <h:graphicImage url="../resources/images/#{catalogController.item.imagePath}"
+                                alt="#{catalogController.item.name}" class="pull-left"/>
+
+                <div class="media-body">
+                    <h3 class="media-heading">#{catalogController.item.product.name} - #{catalogController.item.name}</h3>
+                    <h4 class="media-heading">#{i18n.item_unitCost}: $#{catalogController.item.unitCost}</h4>
+                    <h:outputText value="#{catalogController.item.description}"/>
+                </div>
+                <div class="pull-right">
+                    <h:commandLink action="#{shoppingCartController.addItemToCart}" styleClass="add-to-cart"
+                        rendered="#{accountController.loggedIn}">
+                        <h:outputText value="#{i18n.searchResult_addToCart}"/>
+                        <f:param name="itemId" value="#{catalogController.item.id}"/>
+                    </h:commandLink>
+                    <prime:commandLink update="@all" value="AJAX #{oneItem.name}"
+                        action="#{shoppingCartController.addItemToCart(oneItem.id)}" 
+                        styleClass="add-to-cart" rendered="#{accountController.loggedIn}"/>
+                    
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

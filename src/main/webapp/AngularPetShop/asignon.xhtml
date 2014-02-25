@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html" 
+  xmlns:f="http://java.sun.com/jsf/core" 
+  xmlns:prime="http://primefaces.org/ui"
+  template="layouts/atemplate.xhtml">
+
+  <ui:define name="title">#{i18n.signon_signIn}</ui:define>
+
+  <ui:define name="body">
+
+    <h2>#{i18n.signon_signIn}</h2>
+
+    <h3>#{i18n.signon_returningCustomer}</h3>
+
+    <div class="row-fluid">
+
+      <div class="span5">
+        <h:form>
+          <h:panelGrid columns="2">
+            <f:facet name="header">
+              <h:outputText value="#{i18n.yes}" />
+            </f:facet>
+            <prime:outputLabel value="#{i18n.customer_login}" for="@next" />
+            <prime:inputText value="#{credentials.login}" maxlength="10" size="12"/>
+            <prime:outputLabel value="#{i18n.customer_password}" for="@next" />
+            <prime:password value="#{credentials.password}" maxlength="10" size="12"/>
+            <f:facet name="footer">
+              <prime:commandButton value="#{i18n.signon_signIn}" action="#{accountController.doLogin}" type="submit" ajax="false"
+                update="@(body > *)"/>
+              <h:outputLabel value="user/user - admin/admin" />
+            </f:facet>
+          </h:panelGrid>
+        </h:form>
+      </div>
+
+      <div class="span5">
+        <h:form>
+          <h:panelGrid columns="2">
+            <f:facet name="header">
+              <h:outputText value="#{i18n.signon_signup}" />
+            </f:facet>
+            <prime:outputLabel value="#{i18n.customer_login}" for="@next" />
+            <prime:inputText value="#{credentials.login}" maxlength="10" size="12" required="true" />
+            <prime:outputLabel value="#{i18n.customer_password}" for="@next" />
+            <prime:password value="#{credentials.password}" maxlength="10" size="12" feedback="true" />
+            <prime:outputLabel value="#{i18n.customer_password} (#{i18n.again}):" for="@next" />
+            <prime:password value="#{credentials.password2}" maxlength="10" size="12" feedback="true" />
+            <f:facet name="footer">
+              <prime:commandButton value="#{i18n.signon_new}" action="#{accountController.doCreateNewAccount}"
+                type="submit" update="@(body > *)" partialSubmit="true" process="@form" />
+            </f:facet>
+          </h:panelGrid>
+        </h:form>
+      </div>
+    </div>
+
+  </ui:define>
+</ui:composition>
