@@ -25,12 +25,7 @@
                     <h:outputText value="#{catalogController.item.description}"/>
                 </div>
                 <div class="pull-right">
-                    <h:commandLink action="#{shoppingCartController.addItemToCart}" styleClass="add-to-cart"
-                        rendered="#{accountController.loggedIn}">
-                        <h:outputText value="#{i18n.searchResult_addToCart}"/>
-                        <f:param name="itemId" value="#{catalogController.item.id}"/>
-                    </h:commandLink>
-                    <prime:commandLink update="@all" value="AJAX #{catalogController.item.name}"
+                    <prime:commandLink update="@all" value="#{i18n.searchResult_addToCart}"
                         action="#{shoppingCartController.addItemToCart(catalogController.item.id)}" 
                         styleClass="add-to-cart" rendered="#{accountController.loggedIn}"/>
                     
