@@ -30,8 +30,8 @@
                         <h:outputText value="#{i18n.searchResult_addToCart}"/>
                         <f:param name="itemId" value="#{catalogController.item.id}"/>
                     </h:commandLink>
-                    <prime:commandLink update="@all" value="AJAX #{oneItem.name}"
-                        action="#{shoppingCartController.addItemToCart(oneItem.id)}" 
+                    <prime:commandLink update="@all" value="AJAX #{catalogController.item.name}"
+                        action="#{shoppingCartController.addItemToCart(catalogController.item.id)}" 
                         styleClass="add-to-cart" rendered="#{accountController.loggedIn}"/>
                     
                 </div>
