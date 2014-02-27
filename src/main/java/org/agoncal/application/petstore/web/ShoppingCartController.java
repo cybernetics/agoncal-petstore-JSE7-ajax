@@ -128,8 +128,8 @@ public class ShoppingCartController extends Controller implements Serializable {
         return total;
     }
 
-    public String removeItemFromCart() {
-        Item item = catalogBean.findItem(getParamId("itemId"));
+    public String removeItemFromCart(String itemId) {
+        Item item = catalogBean.findItem(Long.valueOf(itemId));
 
         for (CartItem cartItem : cartItems) {
             if (cartItem.getItem().equals(item)) {
