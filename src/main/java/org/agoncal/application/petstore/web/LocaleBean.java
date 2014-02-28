@@ -16,16 +16,13 @@ import org.agoncal.application.petstore.util.Loggable;
 @SessionScoped
 @Loggable
 public class LocaleBean implements Serializable {
+    private static final long serialVersionUID = 7260637678996003208L;
 
     @Produces
     private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
     @Inject
     private transient Logger logger;
-
-    // ======================================
-    // = Business methods =
-    // ======================================
 
     public String getLanguage() {
         return locale.getLanguage();
@@ -40,6 +37,9 @@ public class LocaleBean implements Serializable {
     }
 
     public void setLanguage(String language) {
+        if (!locale.getLanguage().equals(language)) {
+            logger.info("New language: " + language);
+        }
         locale = new Locale(language);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
     }

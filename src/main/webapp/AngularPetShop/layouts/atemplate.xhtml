@@ -42,7 +42,7 @@
                 <f:selectItem itemLabel="Français" itemValue="fr" styleClass="menu-fr" />
                 <f:selectItem itemLabel="English" itemValue="en" styleClass="menu-en" />
                 <f:selectItem itemLabel="Español" itemValue="es" styleClass="menu-es" />
-                <prime:ajax event="change" update="@all" listener="#{localeBean.languageSelectionChanged}"
+                <prime:ajax event="change" update="@(body > *)" listener="#{localeBean.languageSelectionChanged}"
                   process="@this"
                 />
               </prime:selectOneMenu>

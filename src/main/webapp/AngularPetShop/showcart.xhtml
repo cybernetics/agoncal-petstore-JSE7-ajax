@@ -36,14 +36,14 @@
         </prime:commandLink>
       </h:column>
       <h:column>
-        <h:inputText value="#{oneItem.quantity}" />
+        <h:inputText id="quantity" value="#{oneItem.quantity}" />
       </h:column>
       <h:column>
                     x
                     <h:outputText value="#{oneItem.item.unitCost}" /> $
                 </h:column>
       <h:column>
-                    = <h:outputText value="#{oneItem.subTotal}" /> $
+                    = <h:outputText id="subTotal" value="#{oneItem.subTotal}" /> $
                 </h:column>
       <h:column>
                     &nbsp;
@@ -59,7 +59,7 @@
 
     <div>
       Total $
-      <h:outputText value="#{shoppingCartController.total}" />
+      <h:outputText id="total" value="#{shoppingCartController.total}" />
       &nbsp;
       <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out" styleClass="checkout-cart" />
     </div>
